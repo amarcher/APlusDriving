@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :drivers
+
   resources :vehicles do
     resources :events
   end

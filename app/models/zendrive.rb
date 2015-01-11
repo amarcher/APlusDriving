@@ -6,37 +6,26 @@ class Zendrive
   base_uri 'https://api.zendrive.com/v1'
 
   def initialize
-    @apikey = 'bqUu9FJxbii5AZFBnTVj0MQLzuqZSwjj'
+    @apikey = "bqUu9FJxbii5AZFBnTVj0MQLzuqZSwjj"
   end
 
-  def trips(driver)
-    url = "/driver/#{driver}/trips?apikey=#{@apikey}"
-    trip_data = self.class.get(url)
-    parse_trips(trip_data, driver)
+  def drivers
+    url = "/drivers?apikey=#{@apikey}"
+    driver_data = self.class.get(url)
+    p driver_data
+    driver_data['drivers']
   end
 
-  def trips_after(drivers,time)
-  	recent_trips = []
-  	drivers.each do |driver|
-    	url = "/driver/#{driver}/trips?apikey=#{@apikey}"
-    	trip_data = self.class.get(url)
-    	p recent_trips
-    	recent_trips += parse_trips(trip_data,driver).select {|trip| trip.created_at > time}
-    end
-    return recent_trips
+  def driver_data(driver_id)
+    score_url = "/driver/#{driver_id}/score?apikey=#{@apikey}"
+    trip_url = "/driver/#{driver_id}/trips?apikey=#{@apikey}"
+    score_data = self.class.get(score_url)
+    trip_data = self.class.get(trip_url)
+    parse_driver_data(score_data, trip_data)
   end
 
-  def parse_trips(trip_data, driver)
-    data = trip_data
-    return data.map do |event|
-      {
-        event_type: format_event(event['Trip']),
-        driver: driver,
-        created_at: event['Time'],
-        lat: event['Location']['Lat'],
-        long: event['Location']['Lng']
-      }
-    end
+  def parse_driver_data(score_data, trip_data)
+    {scores: score_data, trips: trip_data}
   end
 
 end
