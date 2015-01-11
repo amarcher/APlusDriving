@@ -12,7 +12,6 @@ class CreateEvents < ActiveRecord::Migration
       t.string :heading
       t.string :orientation
       t.string :elevation
-      t.string :formatted_time
     	t.belongs_to :vehicle
       t.timestamps
     end
