@@ -46,7 +46,6 @@ class Mojio
         odometer: event['Odometer'],
         temp_inside: event['TemperatureInside'],
         heading: event['Heading'],
-        orientation: event['Orientation'],
         elevation: event['Altitude']
       }
     end
