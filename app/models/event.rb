@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+	attr_accessor :formatted_time
 	belongs_to :vehicle
 
 	before_create :format_time
