@@ -21,6 +21,7 @@ class Zendrive
     trip_url = "/driver/#{driver_id}/trips?apikey=#{@apikey}"
     score_data = self.class.get(score_url)
     trip_data = self.class.get(trip_url)
+
     parse_driver_data(score_data, trip_data)
   end
 

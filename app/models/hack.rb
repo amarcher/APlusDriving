@@ -9,9 +9,11 @@ class Hack
   def status
     doors_locked = self.class.get("/#{@id}/door")
     windows_open = self.class.get("/#{@id}/window")
-    p doors_locked
-    p windows_open
-    return {doors_locked: doors_locked['isVehicleLocked'], windows_open: windows_open['isDriverOpen']}
+    lights_on = false # Lights data is not currently available
+
+    return {doors_locked: doors_locked['isVehicleLocked'],
+            windows_open: windows_open['isDriverOpen'],
+            LightsOn: lights_on}
   end
 
 end
