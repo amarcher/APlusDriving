@@ -30,7 +30,19 @@ class EventsController < ApplicationController
 			@events = @vehicle.events
 		end
 
-		render json: @events
+		# @events_copy = @events.dup
+
+		# @events.each.with_index do |event, index|
+		# 	if (DateTime.now.strftime('%d') == event['created_at'].to_datetime.strftime('%d'))
+		#   	@events_copy[index]['created_at'] = event['created_at'].to_datetime.strftime("%-I:%M%P")
+		# 		p event['created_at'].to_datetime.strftime("%-I:%M%P")
+		# 	else
+		# 		@events_copy[index]['created_at'] = event['created_at'].to_datetime.strftime("%b %-d, %-I%P")
+		# 		p event['created_at'].to_datetime.strftime("%b %-d, %-I%P")
+		# 	end
+		# end
+
+		render json: @events 
 	end
 
 end

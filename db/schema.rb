@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20150111074245) do
     t.string   "heading"
     t.string   "orientation"
     t.string   "elevation"
+    t.string   "formatted_time"
     t.integer  "vehicle_id"
     t.datetime "created_at"
     t.datetime "updated_at"
