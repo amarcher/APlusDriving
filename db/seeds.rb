@@ -21,5 +21,10 @@ drivers = zendrive.drivers
 
 drivers.each.with_index do |driver, index|
 	driver_names = ['Yash', 'Andy', 'Jenn', 'Michael', 'Murat', 'Osman', 'John', 'Meg']
-	Driver.create(driver_id: driver['driver_id'], name: driver_names[index])
+	Driver.create({
+		driver_id: driver['driver_id'],
+		name: driver_names[index], 
+		rank: driver['rank'],
+		recommendation: driver['recommendation']
+	})
 end

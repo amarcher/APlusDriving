@@ -8,6 +8,8 @@ class DriversController < ApplicationController
 			stats = zendrive.driver_data(driver.driver_id)
 			stats['driver_id'] = driver.driver_id
 			stats['driver_name'] = driver.name
+			stats['rank'] = driver.rank
+			stats['recommendation'] = driver.recommendation
 			driver_stats << stats
 		end
 		render json: driver_stats
