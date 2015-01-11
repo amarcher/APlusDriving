@@ -14,8 +14,13 @@ class Mojio
     @mojio_id = mojio_id
   end
 
+  def status
+    status_data = self.class.get("/Vehicles/#{@mojio_id}")
+    parse_status(status_data)
+  end
+
   def events
-    event_types = ["IgnitionOn","IgnitionOff","BatteryCharging","SpeedLimitDetected","TowStart","Accident","LowFuel","FenceExited"]
+    event_types = ["IgnitionOn","IgnitionOff","BatteryCharging","SpeedLimitDetected","TowStart","Accident","LowFuel","FenceExited","ExperienceControl"]
     criteria = "EventType%3D#{event_types.join(',')}"
     event_data = self.class.get("/Vehicles/#{@mojio_id}/Events?limit=100&offset=0&sortBy=Time&desc=false&criteria=#{criteria}")
     parse_events(event_data)
@@ -49,6 +54,10 @@ class Mojio
         elevation: event['Altitude']
       }
     end
+  end
+
+  def parse_status(status_data)
+    status_data
   end
 
   def format_event(event)
